@@ -129,7 +129,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Set the content ViewGroup for XScrollView.
      *
-     * @param content
+     * @param content content
      */
     public void setContentView(ViewGroup content) {
         if (mLayout == null) {
@@ -149,7 +149,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Set the content View for XScrollView.
      *
-     * @param content
+     * @param content content
      */
     public void setView(View content) {
         if (mLayout == null) {
@@ -165,7 +165,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Enable or disable pull down refresh feature.
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setPullRefreshEnable(boolean enable) {
         mEnablePullRefresh = enable;
@@ -177,7 +177,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Enable or disable pull up load more feature.
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setPullLoadEnable(boolean enable) {
         mEnablePullLoad = enable;
@@ -206,7 +206,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Enable or disable auto load more feature when scroll to bottom.
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setAutoLoadEnable(boolean enable) {
         mEnableAutoLoad = enable;
@@ -235,7 +235,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Set last refresh time
      *
-     * @param time
+     * @param time 时间
      */
     public void setRefreshTime(String time) {
         mHeaderTime.setText(time);
@@ -244,7 +244,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     /**
      * Set listener.
      *
-     * @param listener
+     * @param listener listener
      */
     public void setIXScrollViewListener(IXScrollViewListener listener) {
         mListener = listener;

@@ -118,7 +118,7 @@ public class XHeaderView extends LinearLayout {
     /**
      * Set the header view visible height.
      *
-     * @param height
+     * @param height 高度
      */
     public void setVisibleHeight(int height) {
         if (height < 0) height = 0;
@@ -130,7 +130,7 @@ public class XHeaderView extends LinearLayout {
     /**
      * Get the header view visible height.
      *
-     * @return
+     * @return 高度
      */
     public int getVisibleHeight() {
         return mContainer.getHeight();

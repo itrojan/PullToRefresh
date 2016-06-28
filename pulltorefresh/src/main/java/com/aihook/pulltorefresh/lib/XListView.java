@@ -135,7 +135,7 @@ public class XListView extends ListView implements OnScrollListener {
     /**
      * Enable or disable pull down refresh feature.
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setPullRefreshEnable(boolean enable) {
         mEnablePullRefresh = enable;
@@ -147,7 +147,7 @@ public class XListView extends ListView implements OnScrollListener {
     /**
      * Enable or disable pull up load more feature.
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setPullLoadEnable(boolean enable) {
         mEnablePullLoad = enable;
@@ -176,7 +176,7 @@ public class XListView extends ListView implements OnScrollListener {
     /**
      * Enable or disable auto load more feature when scroll to bottom.
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setAutoLoadEnable(boolean enable) {
         mEnableAutoLoad = enable;
@@ -205,7 +205,7 @@ public class XListView extends ListView implements OnScrollListener {
     /**
      * Set last refresh time
      *
-     * @param time
+     * @param time 时间
      */
     public void setRefreshTime(String time) {
         mHeaderTime.setText(time);
@@ -214,7 +214,7 @@ public class XListView extends ListView implements OnScrollListener {
     /**
      * Set listener.
      *
-     * @param listener
+     * @param listener listenter
      */
     public void setXListViewListener(IXListViewListener listener) {
         mListener = listener;
