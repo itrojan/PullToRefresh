@@ -196,9 +196,6 @@ public class XListView extends ListView implements OnScrollListener {
             mPullRefreshing = false;
             resetHeaderHeight();
         }
-        if (mEnablePullRefresh && null != mListener) {
-            mListener.onStop();
-        }
     }
 
     /**
@@ -208,9 +205,6 @@ public class XListView extends ListView implements OnScrollListener {
         if (mPullLoading) {
             mPullLoading = false;
             mFooterView.setState(XFooterView.STATE_NORMAL);
-        }
-        if (mEnablePullRefresh && null != mListener) {
-            mListener.onStop();
         }
     }
 
@@ -466,8 +460,6 @@ public class XListView extends ListView implements OnScrollListener {
         public void onRefresh();
 
         public void onLoadMore();
-
-        public void onStop();
     }
 
     public int getmRefreshDelay() {
