@@ -3,6 +3,7 @@ package com.aihook.pulltorefresh.lib;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -65,6 +66,10 @@ public class XListView extends ListView implements OnScrollListener {
     // total list items, used to detect is at the bottom of ListView
     private int mTotalItemCount;
 
+    private int mRefreshDelay = 1000;
+    private int mLoadMoreDelay = 500;
+    private Handler mHandler;
+
     public XListView(Context context) {
         super(context);
         initWithContext(context);
@@ -84,6 +89,7 @@ public class XListView extends ListView implements OnScrollListener {
         mScroller = new Scroller(context, new DecelerateInterpolator());
         super.setOnScrollListener(this);
 
+        mHandler = new Handler();
         // init header view
         mHeader = new XHeaderView(context);
         mHeaderContent = (RelativeLayout) mHeader.findViewById(R.id.header_content);
@@ -190,6 +196,9 @@ public class XListView extends ListView implements OnScrollListener {
             mPullRefreshing = false;
             resetHeaderHeight();
         }
+        if (mEnablePullRefresh && null != mListener) {
+            mListener.onStop();
+        }
     }
 
     /**
@@ -199,6 +208,9 @@ public class XListView extends ListView implements OnScrollListener {
         if (mPullLoading) {
             mPullLoading = false;
             mFooterView.setState(XFooterView.STATE_NORMAL);
+        }
+        if (mEnablePullRefresh && null != mListener) {
+            mListener.onStop();
         }
     }
 
@@ -417,13 +429,23 @@ public class XListView extends ListView implements OnScrollListener {
 
     private void refresh() {
         if (mEnablePullRefresh && null != mListener) {
-            mListener.onRefresh();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mListener.onRefresh();
+                }
+            }, mRefreshDelay);
         }
     }
 
     private void loadMore() {
         if (mEnablePullLoad && null != mListener) {
-            mListener.onLoadMore();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mListener.onLoadMore();
+                }
+            }, mLoadMoreDelay);
         }
     }
 
@@ -444,5 +466,23 @@ public class XListView extends ListView implements OnScrollListener {
         public void onRefresh();
 
         public void onLoadMore();
+
+        public void onStop();
+    }
+
+    public int getmRefreshDelay() {
+        return mRefreshDelay;
+    }
+
+    public void setmRefreshDelay(int mRefreshDelay) {
+        this.mRefreshDelay = mRefreshDelay;
+    }
+
+    public int getmLoadMoreDelay() {
+        return mLoadMoreDelay;
+    }
+
+    public void setmLoadMoreDelay(int mLoadMoreDelay) {
+        this.mLoadMoreDelay = mLoadMoreDelay;
     }
 }
