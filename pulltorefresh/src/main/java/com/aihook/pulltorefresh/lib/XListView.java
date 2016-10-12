@@ -429,9 +429,7 @@ public class XListView extends ListView implements OnScrollListener {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (mEnablePullRefresh && null != mListener) {
-                        mListener.onRefresh();
-                    }
+                    mListener.onRefresh();
 
                 }
             }, mRefreshDelay);
@@ -443,9 +441,7 @@ public class XListView extends ListView implements OnScrollListener {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (mEnablePullLoad && null != mListener) {
-                        mListener.onLoadMore();
-                    }
+                    mListener.onLoadMore();
                 }
             }, mLoadMoreDelay);
         }
