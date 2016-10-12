@@ -52,6 +52,8 @@ public class XListViewActivity extends Activity implements XListView.IXListViewL
         mListView.setAutoLoadEnable(true);
         mListView.setXListViewListener(this);
         mListView.setRefreshTime(getTime());
+        mListView.setRefreshDelay(2500);
+        mListView.setLoadMoreDelay(2500);
 
         mAdapter = new ArrayAdapter<String>(this, R.layout.vw_list_item, items);
         mListView.setAdapter(mAdapter);
@@ -68,30 +70,21 @@ public class XListViewActivity extends Activity implements XListView.IXListViewL
 
     @Override
     public void onRefresh() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mIndex = ++mRefreshIndex;
-                items.clear();
-                geneItems();
-                mAdapter = new ArrayAdapter<String>(XListViewActivity.this, R.layout.vw_list_item,
-                        items);
-                mListView.setAdapter(mAdapter);
-                onLoad();
-            }
-        }, 2500);
+        mIndex = ++mRefreshIndex;
+        items.clear();
+        geneItems();
+        mAdapter = new ArrayAdapter<String>(XListViewActivity.this, R.layout.vw_list_item,
+                items);
+        mListView.setAdapter(mAdapter);
+        onLoad();
+
     }
 
     @Override
     public void onLoadMore() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                geneItems();
-                mAdapter.notifyDataSetChanged();
-                onLoad();
-            }
-        }, 2500);
+        geneItems();
+        mAdapter.notifyDataSetChanged();
+        onLoad();
     }
 
     private void geneItems() {

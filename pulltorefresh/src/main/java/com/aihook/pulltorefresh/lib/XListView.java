@@ -20,6 +20,9 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class XListView extends ListView implements OnScrollListener {
 //    private static final String TAG = "XListView";
 
@@ -449,6 +452,15 @@ public class XListView extends ListView implements OnScrollListener {
     }
 
     /**
+     * 刷新和加载结束
+     */
+    public void loadEnd(){
+        stopLoadMore();
+        stopRefresh();
+        setRefreshTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+    }
+
+    /**
      * You can listen ListView.OnScrollListener or this one. it will invoke
      * onXScrolling when header/footer scroll back.
      */
@@ -467,19 +479,19 @@ public class XListView extends ListView implements OnScrollListener {
         public void onLoadMore();
     }
 
-    public int getmRefreshDelay() {
+    public int getRefreshDelay() {
         return mRefreshDelay;
     }
 
-    public void setmRefreshDelay(int mRefreshDelay) {
+    public void setRefreshDelay(int mRefreshDelay) {
         this.mRefreshDelay = mRefreshDelay;
     }
 
-    public int getmLoadMoreDelay() {
+    public int getLoadMoreDelay() {
         return mLoadMoreDelay;
     }
 
-    public void setmLoadMoreDelay(int mLoadMoreDelay) {
+    public void setLoadMoreDelay(int mLoadMoreDelay) {
         this.mLoadMoreDelay = mLoadMoreDelay;
     }
 }
